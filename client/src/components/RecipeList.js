@@ -3,10 +3,11 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { Container, Card, CardContent, CardActions, Button, Typography, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { v4 as uuidv4 } from 'uuid';
+import { Link } from 'react-router-dom'
 
 const dummyData = [
     {
-        id: uuidv4(),
+        id: "5f1479d365026e26589a51b7",
         description: "this is a description",
         recipe: [
             {
@@ -112,9 +113,11 @@ export const RecipeList = () => {
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Button size="small" color="primary">
-                                View
-                            </Button>
+                            <Link to={`/recipe/${id}`}>
+                                <Button size="small" color="primary">
+                                    View
+                                </Button>
+                            </Link>
                             <Button size="small" color="secondary">
                                 Delete
                             </Button>

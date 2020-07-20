@@ -28,6 +28,15 @@ router.post('/', (req, res) => {
         .then(item => res.json(item));
 });
 
+//@route GET api/items/:id
+//@desc get single item
+//@access Public
+router.get('/:id', (req, res) => {
+    Item.findById(req.params.id)
+        .then(item => res.json(item))
+        .catch(err => res.status(404).json({success: false}))
+})
+
 // @route DELETE api/items/:id
 // @desc delete an item
 // @access Public

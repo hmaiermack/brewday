@@ -1,42 +1,32 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { Redirect } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
-export const Recipe = (props) => {
+
+ const Recipe = (props) => {
+     let history = useHistory();
     const [data, setData] = useState({});
     let recipe = {};
-    const [goodId, setGoodId] = useState();
-    const _isMounted = useRef(true);
 
     useEffect(() => {
-        if(_isMounted.current === true){
         fetch(`http://localhost:5000/api/items/${props.match.params.id}`)
         .then(res => {
             if(!res.ok) {
-               setGoodId(false)
+               throw new Error('404 not found')
             }
             return res.json()
         })
         .then(json => setData(json))
-        .catch(err => (
-            console.log(err)
-        ))}
-
-        return () => { // ComponentWillUnmount in Class Component
-        _isMounted.current = false;
-    }
- 
-    }, [props.match.params.id])
-
-    if(goodId === false) {
-        return (
-            <Redirect to={{ pathname: "/404" }} />
-        )
-    }
+        .catch(err => {
+            console.log(err);
+            history.push("/404")
+        } )
+    }, [])
+        
 
 
     return (
         <h1>
-            {data.date}
+            <p>hi</p>
         </h1>
     )
 }

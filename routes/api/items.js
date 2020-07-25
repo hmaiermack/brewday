@@ -47,7 +47,7 @@ router.delete('/:id', (req, res) => {
     .catch(err => res.status(404).json({success: false}))        
 });
 
-// @route POST api/items/:id
+// @route PUT api/items/:id
 // @desc update an item
 // @access Public
 router.put('/:id', (req, res) => {

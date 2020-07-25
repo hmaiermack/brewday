@@ -53,8 +53,8 @@ router.delete('/:id', (req, res) => {
 router.put('/:id', (req, res) => {
 
 
-    const {gravity, recipe, notes} = req.body;
-    const beerUpdate = {gravity, recipe, notes};
+    const beerUpdate = {...req.body};
+    console.log(beerUpdate)
 
     //check to see if fields are included in request, if not remove them from the req
     if (beerUpdate.gravity === undefined) {
@@ -69,13 +69,16 @@ router.put('/:id', (req, res) => {
         delete beerUpdate.notes
     }
 
+    if(beerUpdate.description === undefined) {
+        delete beerUpdate.description
+    }
     //make sure req includes necesarry field
     const checkKeys = Object.values(beerUpdate).filter(Boolean).length
 
     if(checkKeys === 0){
       return res.status(400).json({
         error: {
-          message: `must contain either gravity, recipe item, or a note`
+          message: `must contain either gravity, recipe item, note, or description`
         }
       })
     }
@@ -84,9 +87,17 @@ router.put('/:id', (req, res) => {
 
     Item.findOneAndUpdate({_id: `${req.params.id}`},
     {
-        $push: {...beerUpdate} 
-    },
-    () => res.json({success: true}))
+        $set: {...beerUpdate} 
+    }, {new: true},
+    (err, doc) => {
+        if(err){
+            res.status(400).json({
+                error: {
+                    message: 'Something went wrong. Try again.'
+                }
+            })
+        }
+        res.json(doc)})
 });
 
 

@@ -2,7 +2,6 @@ import React from 'react';
 import { Grid, Button } from '@material-ui/core'
 import Nav from './Nav'
 import RecipeList from './RecipeList'
-import Recipe from './Recipe'
 
 function Home() {
   return (

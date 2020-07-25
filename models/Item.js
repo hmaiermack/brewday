@@ -11,19 +11,16 @@ const ItemSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    gravity: {type: [
-            {
+    gravity: {
                 date: {type: Date, default: Date.now},
                 reading: {type: Number}
-            }    
-        ]},
+            },
     recipe: Array,
-    notes:  {type: [
-        {
+    notes: {
             date: {type: Date, default: Date.now},
             note: {type: String}
-        }    
-    ]}
+        },
+    description: String,
 });
 
 module.exports = Item = mongoose.model('item', ItemSchema);

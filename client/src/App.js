@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import "fontsource-roboto"
 import Home from './components/Home'
-import Recipe from './components/Recipe'
+import Recipe from './components/Recipe/Recipe'
 import PageNotFound from './components/PageNotFound'
 import { Switch, Route } from 'react-router-dom'
 

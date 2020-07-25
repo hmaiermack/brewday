@@ -101,6 +101,7 @@ export const RecipeList = () => {
 
     return (
         <Grid container spacing={2}>
+            {/*create cards from fetch call */}
             {items.map(({id, name, description}) => (
                 <Grid item xs={12} sm={4} key={id}>
                     <Card>

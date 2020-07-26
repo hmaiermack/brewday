@@ -14,7 +14,7 @@ export const IngredientList = (props) => {
     const classes = useStyles();
 
     return (
-        <Grid item xs={10} sm={5} >
+        <Grid item xs={10} sm={3} >
             <List component="div" aria-labelledby="list-subheader"
                 subheader={
                     <ListSubheader component="div" id="list-subheader">

@@ -56,8 +56,8 @@ router.put('/:id', (req, res) => {
 
 
     const beerUpdate = {...req.body};
-    console.log(beerUpdate)
 
+    //this could be done programmatically
     //check to see if fields are included in request, if not remove them from the req
     if (beerUpdate.gravity === undefined) {
         delete beerUpdate.gravity

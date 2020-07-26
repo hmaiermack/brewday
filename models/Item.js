@@ -25,7 +25,10 @@ const ItemSchema = new Schema({
             note: {type: String}
         }
     ],
-    description: String,
+    description: {
+        type: String,
+        required: true
+    },
 });
 
 module.exports = Item = mongoose.model('item', ItemSchema);

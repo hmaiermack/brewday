@@ -19,9 +19,11 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     const newItem = new Item({
         name: req.body.name,
-        gravity: req.body.gravity,
-        recipe: req.body.recipe,
-        notes: req.body.notes
+        description: !req.body.description ? "" : req.body.description,
+        gravity: [],
+        ingredients: [],
+        notes: [],
+        directions: []
     });
 
     newItem.save()
@@ -61,8 +63,8 @@ router.put('/:id', (req, res) => {
         delete beerUpdate.gravity
     }
 
-    if(beerUpdate.recipe === undefined) {
-        delete beerUpdate.recipe
+    if(beerUpdate.ingredients === undefined) {
+        delete beerUpdate.ingredients
     }
 
     if(beerUpdate.notes === undefined) {
@@ -71,6 +73,10 @@ router.put('/:id', (req, res) => {
 
     if(beerUpdate.description === undefined) {
         delete beerUpdate.description
+    }
+
+    if(beerUpdate.directions === undefined) {
+        delete beerUpdate.directions
     }
     //make sure req includes necesarry field
     const checkKeys = Object.values(beerUpdate).filter(Boolean).length

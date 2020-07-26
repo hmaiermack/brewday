@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Grid, Container, Paper, Typography } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 
 
  const Recipe = (props) => {
@@ -31,13 +31,19 @@ import { Grid, Container, Paper, Typography } from '@material-ui/core'
 
     return (
             <Grid container  direction="row">
+                <Grid container>
                 <Grid item xs={2} />
                 <Grid item xs={8}>
-                    <Typography variant="h6">{data.name}</Typography>
+                    <Typography variant="h4">{data.name}</Typography>
                     <Typography variant="subtitle2">{data.date}</Typography>
                     <Typography variant="p">{data.description}</Typography>
                 </Grid>
                 <Grid item xs={2} />
+                </Grid>
+                <Grid container>
+                    <IngredientList />
+                    <DirectionList />
+                </Grid>
             </Grid>
     )
 }

@@ -11,15 +11,20 @@ const ItemSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    gravity: {
-                date: {type: Date, default: Date.now},
-                reading: {type: Number}
-            },
-    recipe: Array,
-    notes: {
+    gravity: [
+        {
+            date: {type: Date, default: Date.now},
+            reading: {type: Number}
+        }
+    ],
+    ingredients: Array,
+    directions: Array,
+    notes: [
+        {
             date: {type: Date, default: Date.now},
             note: {type: String}
-        },
+        }
+    ],
     description: String,
 });
 

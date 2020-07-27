@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react'
 import RecipeReducer from './RecipeReducer'
 
-const recipe = {
+const data = {
     name: "",
     description: "",
     gravity: [],
@@ -11,7 +11,7 @@ const recipe = {
 }
 
 const initialState = {
-    recipe,
+    data,
 
 }
 
@@ -27,13 +27,24 @@ export const RecipeProvider = ({ children }) => {
     function addItem(target, value){
         dispatch({
             type: 'ADD_ITEM',
-            payload: [target, value]
+            payload: {target, value}
         })
+        console.log('data after add' + data)
     } 
+
+    function fetchUpdate(data){
+        dispatch({
+            type:'FETCH_UPDATE',
+            payload: data
+        })
+        console.log(data)
+    }
 
     return (
         <RecipeContext.Provider value={{
-            recipe: state.recipe
+            data: state.data,
+            addItem,
+            fetchUpdate
         }}>
             {children}
         </RecipeContext.Provider>

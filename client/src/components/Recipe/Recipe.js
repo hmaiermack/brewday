@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Grid, Typography } from '@material-ui/core'
 import IngredientList from './IngredientList'
@@ -10,12 +10,9 @@ import RecipeContext from '../../context/RecipeContext'
  const Recipe = (props) => {
      //hook to use history from react router
      let history = useHistory();
-     const [data, setData] = useState({
-     });
 
-     const { recipe } = useContext(RecipeContext)
+     const { data, fetchUpdate } = useContext(RecipeContext)
 
-     console.log(recipe)
     
 
     useEffect(() => {
@@ -26,7 +23,7 @@ import RecipeContext from '../../context/RecipeContext'
             }
             return res.json()
         })
-        .then(json => setData({ ...json, 
+        .then(json => fetchUpdate({ ...json, 
                                 date: json.date.substr(0,10),
                                 //sort by newest date first
                                 notes: json.notes.sort((a, b) => {
@@ -55,17 +52,17 @@ import RecipeContext from '../../context/RecipeContext'
                 <Grid container>
                 <Grid item xs={2} />
                 <Grid item xs={8}>
-                    <Typography variant="h4">{recipe.name}</Typography>
-                    <Typography variant="subtitle2" color="textSecondary">{recipe.date}</Typography>
-                    <Typography variant="body1" paragraph>{recipe.description}</Typography>
+                    <Typography variant="h4">{data.name}</Typography>
+                    <Typography variant="subtitle2" color="textSecondary">{data.date}</Typography>
+                    <Typography variant="body1" paragraph>{data.description}</Typography>
                 </Grid>
                 <Grid item xs={2} />
                 </Grid>
                 <Grid container spacing={2} justify="center">
-                    <IngredientList ingredients={recipe.ingredients}/>
-                    <DirectionList directions={recipe.directions} />
+                    <IngredientList ingredients={data.ingredients}/>
+                    <DirectionList directions={data.directions} />
                 </Grid>
-                    <NoteList notes={recipe.notes}/>
+                    <NoteList notes={data.notes}/>
             </Grid>
     )
 }

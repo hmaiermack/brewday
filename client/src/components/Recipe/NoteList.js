@@ -32,7 +32,7 @@ export const NoteList = (props) => {
                     </Grid>
                 )
             }
-            <AddButton>Add a note</AddButton>
+            <AddButton prompt='add a note' target='notes' keyId="note">Add a note</AddButton>
         </Grid>
     )
 }

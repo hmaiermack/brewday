@@ -6,6 +6,7 @@ export default (state, action) => {
                 data: action.payload
             }
         case 'ADD_ITEM':
+            //pass payload.target as string of key you want to modify, value as whatever
             return {
                 ...state,
                 data: {

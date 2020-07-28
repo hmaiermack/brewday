@@ -5,12 +5,16 @@ import RecipeContext from '../../context/RecipeContext';
 export const EditButton = (props) => {
 
     const {addItem} = useContext(RecipeContext)
+    const promptText = props.prompt
     
     function clickPopup () {
-        const note = prompt('Write your note here!')
+        const value = prompt(props.prompt)
 
-        if(note){
-            addItem('notes', note)
+        if(prompt){
+            addItem(props.target, {
+                [props.keyId]: value,
+                date: new Date().toString()
+            })
         }
     }
 

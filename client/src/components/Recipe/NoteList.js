@@ -2,6 +2,8 @@ import React from 'react'
 import { Grid, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import AddButton from './AddButton'
+import DeleteButton from './DeleteButton'
+import EditButton from './EditButton'
 
 
 export const NoteList = (props) => {
@@ -26,9 +28,12 @@ export const NoteList = (props) => {
             </Grid>
             {notes &&
                 notes.map((note, idx) => 
-                    <Grid item xs={10} key={idx} className={classes.root}>
+                    <Grid container item xs={10} key={idx} className={classes.root} display="flex">
                         <Typography variant="subtitle2" color="textSecondary" >{note.date}</Typography>
                         <Typography variant="body1">{note.note}</Typography>
+                        <Grid item xs={9} />
+                        <EditButton target="notes" index={idx} prompt={note.note} />
+                        <DeleteButton target="notes" index={idx} />
                     </Grid>
                 )
             }

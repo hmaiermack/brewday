@@ -11,10 +11,15 @@ export const EditButton = (props) => {
         const value = prompt(props.prompt)
 
         if(prompt){
+            if(props.target === 'notes'){
             addItem(props.target, {
                 [props.keyId]: value,
-                date: new Date().toString()
-            })
+                date: new Date().toISOString()
+            })}
+
+            const split = value.split(/[ ,]+/)
+            console.log(split)
+            addItem(props.target, split)
         }
     }
 

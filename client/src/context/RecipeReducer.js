@@ -10,9 +10,28 @@ export default (state, action) => {
             return {
                 ...state,
                 data: {
-                    [action.payload.target]: [action.payload.value, ...state.data[action.payload.target]]
+                    ...state.data,
+                    [action.payload.target]: [...state.data[action.payload.target], ...action.payload.value]
                 }
             }
+            case 'DELETE_ITEM':
+                //filter target key of data where ith index of key equals value of item at key's payload index
+                return {
+                    ...state,
+                    data: {
+                        ...state.data,
+                        [action.payload.target]: state.data[action.payload.target].filter(item => 
+                            item !== state.data[action.payload.target][action.payload.index])
+                    }
+                }
+            case 'EDIT_ITEM':
+                return {
+                    ...state,
+                    data: {
+                        ...state.data,
+                        [action.payload.target]: action.payload.value
+                    }
+                }
         default: return state;
     }
 }

@@ -27,7 +27,6 @@ const ItemSchema = new Schema({
     ],
     description: {
         type: String,
-        required: true
     },
 });
 

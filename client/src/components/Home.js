@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Button } from '@material-ui/core'
 import Nav from './Nav'
 import RecipeList from './RecipeList'
+import CreateButton from './CreateButton';
 
 function Home() {
   return (
@@ -10,9 +11,7 @@ function Home() {
         <Nav />
       </Grid>
       <Grid item>
-        <Button variant="contained" color="primary">
-          Add new recipe
-        </Button>
+        <CreateButton />
       </Grid>
       <Grid item xs={2}></Grid>
       <Grid item container>

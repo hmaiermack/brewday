@@ -11,10 +11,10 @@ function App() {
 
   return (
     <Switch>
+      <RecipeProvider>
       <Route exact path="/">
         <Home />
       </Route>
-      <RecipeProvider>
         <Route exact path="/recipe/:id" component={Recipe} />
       </RecipeProvider>
       <Route exact path ="/404" component={PageNotFound} />

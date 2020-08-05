@@ -11,38 +11,12 @@ import RecipeContext from '../../context/RecipeContext'
      //hook to use history from react router
      let history = useHistory();
 
-     const { data, fetchUpdate } = useContext(RecipeContext)
+     const { data, getRecipe } = useContext(RecipeContext)
 
     
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/items/${props.match.params.id}`)
-        .then(res => {
-            if(!res.ok) {
-               throw new Error('404 not found')
-            }
-            return res.json()
-        })
-        .then(json => fetchUpdate({ ...json, 
-                                date: json.date.substr(0,10),
-                                //sort by newest date first
-                                notes: json.notes.sort((a, b) => {
-                                    if(Date.parse(a.date) < Date.parse(b.date)){
-                                        return 1
-                                    }
-                                    else if(Date.parse(a.date) > Date.parse(b.date)) {
-                                        return -1
-                                    }
-                                    else { return 0 }
-                                })
-                            }))
-        .catch(err => {
-            console.log(err);
-            //if response is not ok redirect to /404
-            history.push("/404")
-        } )
-
-        
+        getRecipe(props.match.params.id, history)
     }, [])
         
 
